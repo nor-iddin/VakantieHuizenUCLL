@@ -23,20 +23,6 @@ import java.lang.RuntimeException;
 
 public final class Datum implements Comparable<Datum>{ 
 	private int dag = 0, maand = 0, jaar = 0; // variabelen final private maken zorgt voor fouten "Variables not initialized", een default waarde meegeven verhelpt dit ook niet
-
-	/**
-	 * Junit feedback
-	 * --------------
-	 * Wij slagen er niet in om de code te runnen:
-	java.lang.Error: Unresolved compilation problems: 
-	The type Datum must implement the inherited abstract method Comparable<Datum>.compareTo(Datum)
-	The nested type Datum cannot hide an enclosing type
-	
-	Zonder compileerbare code, kunnen we geen Junit scripts runnen...
-	Gelieve onafgewerkte implementaties in comments te laten en Github code telkens 'uitvoerbaar' te houden.
-	Maandag effe bespreken
-	Kristof/Christophe 2-10-2016
-	 */
 	
 	/**
 	 * constructor zonder parameters (object datum gelijk aan de systeemdatum)
@@ -51,10 +37,10 @@ public final class Datum implements Comparable<Datum>{
 			
 			if(dag == 0 || maand == 0 || jaar == 0){
 				
-				throw new DatumKonNietOpgehaaldWordenException("De datum kon niet opgehaald worden.");
+				throw new DatumException("De datum kon niet opgehaald worden.");
 			}
 		}
-		catch (DatumKonNietOpgehaaldWordenException ex)
+		catch (DatumException ex)
 		{
 			System.out.println(ex.toString());
 		}	
@@ -80,22 +66,22 @@ public final class Datum implements Comparable<Datum>{
 						}
 						else
 						{
-							throw new OngeldigJaarDatumObjectException("Het object bevat een ongeldig jaar.");
+							throw new DatumException("Het object bevat een ongeldig jaar.");
 						}
 					}
 					else
 					{
-						throw new OngeldigeMaandDatumException("Het object bevat een ongeldige maand");
+						throw new DatumException("Het object bevat een ongeldige maand");
 					}
 				}
 				else
 				{
-					throw new OngeldigeDagDatumException("Het object bevat een ongeldige dag");
+					throw new DatumException("Het object bevat een ongeldige dag");
 				}
 			}
 			else
 			{
-				throw new LeegDatumObjectException("Het ingevoerde object is leeg.");
+				throw new DatumException("Het ingevoerde object is leeg.");
 			}	
 		}
 		catch (Exception ex){
@@ -123,17 +109,17 @@ public final class Datum implements Comparable<Datum>{
 					}
 					else
 					{
-						throw new OngeldigeMaandDatumException("De ingevoerde maand is ongeldig.");
+						throw new DatumException("De ingevoerde maand is ongeldig.");
 					}
 				}
 				else
 				{
-					throw new OngeldigeDagDatumException("De ingevoerde dag is ongeldig.");
+					throw new DatumException("De ingevoerde dag is ongeldig.");
 				}
 			}
 			else
 			{
-				throw new OngeldigeParameterDatumException("Een of meerdere van de parameters bevat een nulwaarde.");
+				throw new DatumException("Een of meerdere van de parameters bevat een nulwaarde.");
 			}
 		}
 		catch (Exception ex){
@@ -161,23 +147,23 @@ public final class Datum implements Comparable<Datum>{
 				dag = Integer.parseInt(omgezetteDatum.substring(0, 2));
 				if(dag <= 0 && dag >= 32){
 					
-					throw new OngeldigeDagDatumException("Datum bevat een ongeldige dag.");
+					throw new DatumException("Datum bevat een ongeldige dag.");
 				}
 				
 				maand = Integer.parseInt(omgezetteDatum.substring(2, 4));
 				if(maand <= 0 && maand >= 13){
-					throw new OngeldigeMaandDatumException("Datum bevat een ongeldige maand.");
+					throw new DatumException("Datum bevat een ongeldige maand.");
 				}
 				
 				jaar = Integer.parseInt(omgezetteDatum.substring(4,8));
 				if(jaar <= 0){
-					throw new OngeldigJaarDatumObjectException("Datum bevat een ongeldig jaartal.");
+					throw new DatumException("Datum bevat een ongeldig jaartal.");
 				}
 						
 			}
 			else
 			{
-				throw new LeegDatumObjectException("De invoerDatum is leeg");
+				throw new DatumException("De invoerDatum is leeg");
 			}
 		}
 		catch (Exception ex){
