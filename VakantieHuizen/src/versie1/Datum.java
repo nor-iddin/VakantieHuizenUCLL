@@ -103,9 +103,7 @@ public final class Datum implements Comparable<Datum>{
 	 * @param invoerMaand
 	 * @param invoerJaar
 	 */
-	public Datum(int invoerDag, int invoerMaand, int invoerJaar){
-		try
-		{
+	public Datum(int invoerDag, int invoerMaand, int invoerJaar) throws DatumException{
 			if(invoerDag != 0 && invoerMaand != 0 && invoerJaar !=0){
 				if(invoerDag < 32){
 					if(invoerMaand < 13){
@@ -128,11 +126,6 @@ public final class Datum implements Comparable<Datum>{
 			{
 				throw new DatumException("Een of meerdere van de parameters bevat een nulwaarde.");
 			}
-		}
-		catch (Exception ex){
-			
-			System.out.println(ex.toString());
-		}
 	}
 	
 	
@@ -505,7 +498,7 @@ public final class Datum implements Comparable<Datum>{
 		return huidigDatumObject;
 	}
 */
-	public Datum verhoogMetAantalDagen(long aantalDagen){
+	public Datum verhoogMetAantalDagen(long aantalDagen)  throws DatumException{
 		long verschil = this.verschilInDagen(new Datum(1,1,1900));
 
 		return new Datum(verschil+aantalDagen);
@@ -542,7 +535,7 @@ public final class Datum implements Comparable<Datum>{
 	* datum object dat gelijk is aan het huidige datumobject vermindert met aantalDagen
 	* return datum object
 	*/
-	public Datum verlaagMetAantalDagen (long aantalDagen){
+	public Datum verlaagMetAantalDagen (long aantalDagen)  throws DatumException{
 		long verschil = this.verschilInDagen(new Datum(1,1,1900));
 
 		return new Datum(verschil-aantalDagen);
@@ -601,7 +594,7 @@ public final class Datum implements Comparable<Datum>{
 		return dagNaam;
 	}
 */
-	public String getDagNaam (){
+	public String getDagNaam () throws DatumException{
 		String dagNaam="";
 		//dagen sinds 1/1/2000
 		Datum zaterdag = new Datum(1,1,2000);
