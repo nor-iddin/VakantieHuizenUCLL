@@ -64,9 +64,7 @@ public final class Datum implements Comparable<Datum>{
 	 * constructor met een datum object als parameter 
 	 * @param invoerDatum
 	 */
-	public Datum(Datum invoerDatum){
-		try
-		{
+	public Datum(Datum invoerDatum) throws DatumException{
 			if(invoerDatum != null){
 				
 				if(invoerDatum.dag > 0 && invoerDatum.dag < 32){
@@ -97,11 +95,6 @@ public final class Datum implements Comparable<Datum>{
 			{
 				throw new DatumException("Het ingevoerde object is leeg.");
 			}	
-		}
-		catch (Exception ex){
-			
-			System.out.println(ex.toString());
-		}
 	}
 	
 	/**
