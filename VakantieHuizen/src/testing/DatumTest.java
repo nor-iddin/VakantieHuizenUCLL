@@ -1,27 +1,45 @@
 package testing;
 
 import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 import versie1.Datum;
 
 public class DatumTest {
-		
+//	
+//Re-usable objects
+//
+	Datum autoDatum;
+	
+	@Before
+	public void setUp(){
+		autoDatum = new Datum();
+	}
+	
 //
 //Default constructor
 //
 	@Test
 	public void test_DefaultConstructor_Dag_Heeft_Geldig_Bereik() {		
-		Datum datum = new Datum();		
-		assertTrue( "Value out of range", (0 < datum.getDag()) && (datum.getDag() < 32));
+		assertTrue( "Value out of range", (0 < autoDatum.getDag()) && (autoDatum.getDag() < 32));
 	}
 	
 	@Test
-	public void test_DefaultConstructor_Maand_Heeft_Geldig_Bereik() {	
-		Datum datum = new Datum();		
-		assertTrue( "Value out of range", (0 < datum.getMaand()) && (datum.getMaand() < 13));
+	public void test_DefaultConstructor_Maand_Heeft_Geldig_Bereik() {			
+		assertTrue( "Value out of range", (0 < autoDatum.getMaand()) && (autoDatum.getMaand() < 13));
 	}
 	
-	
+//
+//datum(datum) constructor
+//
+	@Test
+	public void test_DatumDatumConstructor(){
+		Datum datum = new Datum(autoDatum);
+		assertEquals(datum.getDag(),autoDatum.getDag());
+		assertEquals(datum.getMaand(),autoDatum.getMaand());
+		assertEquals(datum.getJaar(),autoDatum.getJaar());
+	}
 	
 	/**
 	 * other constructor
