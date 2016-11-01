@@ -9,6 +9,7 @@ import versie1.Datum;
 public class DatumTest {
 //	
 //Re-usable objects
+//@Before code wordt uitgevoerd voor elke test
 //
 	Datum autoDatum;
 	
@@ -143,25 +144,21 @@ public class DatumTest {
 	 */
 	@Test
 	public void test_IsSchrikelJaar_geldig() {	
-		Datum datum = new Datum();
-		assertTrue(datum.isSchrikelJaar(2016));
+		assertTrue(autoDatum.isSchrikelJaar(2016));
 	}
 	
 	@Test
 	public void test_IsSchrikelJaar_ongeldig() {	
-		Datum datum = new Datum();
-		assertFalse(datum.isSchrikelJaar(2015));
+		assertFalse(autoDatum.isSchrikelJaar(2015));
 	}
 	
 	@Test
 	public void test_IsSchrikelJaar_ongeldig_100() {	
-		Datum datum = new Datum();
-		assertFalse(datum.isSchrikelJaar(1900));
+		assertFalse(autoDatum.isSchrikelJaar(1900));
 	}
 	@Test
 	public void test_IsSchrikelJaar_geldig_2000() {	
-		Datum datum = new Datum();
-		assertTrue(datum.isSchrikelJaar(2000));
+		assertTrue(autoDatum.isSchrikelJaar(2000));
 	}
 	
 /*	@Test
