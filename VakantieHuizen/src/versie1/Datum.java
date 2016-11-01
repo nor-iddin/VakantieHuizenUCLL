@@ -24,6 +24,20 @@ import java.lang.RuntimeException;
 public final class Datum implements Comparable<Datum>{ 
 	private int dag = 0, maand = 0, jaar = 0; // variabelen final private maken zorgt voor fouten "Variables not initialized", een default waarde meegeven verhelpt dit ook niet
 	
+	//getters
+	public int getDag()
+	{
+		return dag;
+	}
+	public int getMaand()
+	{
+		return maand;
+	}
+	public int getJaar()
+	{
+		return jaar;
+	}
+	
 	/**
 	 * constructor zonder parameters (object datum gelijk aan de systeemdatum)
 	 */
@@ -261,22 +275,6 @@ public final class Datum implements Comparable<Datum>{
 		dag=dagen;
 		maand=maanden;
 		jaar=jaren;
-	}
-
-
-
-	//geters
-	public int getDag()
-	{
-		return dag;
-	}
-	public int getMaand()
-	{
-		return maand;
-	}
-	public int getJaar()
-	{
-		return jaar;
 	}
 
 	/**Functie voor makelijkere met dzgen te tellen
