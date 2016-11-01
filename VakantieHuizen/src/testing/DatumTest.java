@@ -3,13 +3,17 @@ package testing;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import versie1.Datum;
+import versie1.DatumException;
 
 public class DatumTest {
 //	
 //Re-usable objects
-//@Before code wordt uitgevoerd voor elke test
+//@Before, code wordt uitgevoerd voor elke test
 //
 	Datum autoDatum;
 	
@@ -19,6 +23,12 @@ public class DatumTest {
 	}
 	
 //
+//@Rule, gebruikt om onze exceptions te testen
+//
+	@Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+	
 //Default constructor
 //
 	@Test
@@ -35,11 +45,19 @@ public class DatumTest {
 //datum(datum) constructor
 //
 	@Test
-	public void test_DatumDatumConstructor(){
+	public void test_DatumDatumConstructor() throws DatumException{
 		Datum datum = new Datum(autoDatum);
 		assertEquals(datum.getDag(),autoDatum.getDag());
 		assertEquals(datum.getMaand(),autoDatum.getMaand());
 		assertEquals(datum.getJaar(),autoDatum.getJaar());
+	}
+	
+	@Test
+	public void test_DatumDatumConstructor_nullException() throws DatumException{
+		autoDatum = null;
+		thrown.expect(DatumException.class);	    
+	    thrown.expectMessage("Het ingevoerde object is leeg.");
+	    Datum datum = new Datum(autoDatum);
 	}
 	
 	/**
